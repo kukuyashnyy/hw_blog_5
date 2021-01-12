@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password: </label>
-                    <input class="form-control" rows="3" id="password" name="password"/>
+                    <input type="password" class="form-control" rows="3" id="password" name="password"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>

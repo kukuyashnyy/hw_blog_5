@@ -1,17 +1,15 @@
 package org.itstep;
 
+import org.itstep.sql.Database;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
-    private final String LOGIN = "admin";
-    private final String PASSWORD = "123";
+    private final Database database = Database.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -20,16 +18,16 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(req.getParameter("login"));
-        System.out.println(req.getParameter("password"));
-        if(req.getParameter("login") != null && req.getParameter("password") != null) {
-            if(LOGIN.equals(req.getParameter("login")) && PASSWORD.equals(req.getParameter("password"))) {
-                // Response with header 'Set-Cookie: admin=true; HttpOnly'
-                Cookie cookie = new Cookie("admin", "true");
-                cookie.setMaxAge(3600*24*30);
-                cookie.setHttpOnly(true);
-                resp.addCookie(cookie);
-                resp.sendRedirect(req.getContextPath() + "/post");
+//        System.out.println(req.getParameter("login"));
+//        System.out.println(req.getParameter("password"));
+        String login = req.getParameter("login");
+        String password = req.getParameter("password");
+
+        if(login != null && password != null) {
+            if(database.isUserExist(login, password)) {
+                HttpSession session = req.getSession();
+                session.setAttribute("user", login);
+                resp.sendRedirect(req.getContextPath() + "/admin");
                 return;
             }
         }
