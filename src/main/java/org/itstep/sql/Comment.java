@@ -1,27 +1,41 @@
 package org.itstep.sql;
 
 public class Comment {
-    private String authorName;
-    private String text;
+    private final int id;
+    private final int post_id;
+    private final String authorName;
+    private final String text;
 
-    public Comment(String authorName, String text) {
+    public Comment(int id, int post_id, String authorName, String text) {
+        this.id = id;
+        this.post_id = post_id;
         this.authorName = authorName;
         this.text = text;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getPost_id() {
+        return post_id;
     }
 
     public String getAuthorName() {
         return authorName;
     }
 
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
-
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", post_id=" + post_id +
+                ", authorName='" + authorName + '\'' +
+                ", text='" + text + '\'' +
+                '}';
     }
 }
