@@ -18,6 +18,8 @@ public class ArticleServlet extends HttpServlet {
     private int id;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
+        resp.setCharacterEncoding("utf-8");
         id = Integer.parseInt(req.getParameter("id"));
         Database database = Database.getInstance();
         req.setAttribute("post", database.getPostById(id));
@@ -28,6 +30,8 @@ public class ArticleServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
+        resp.setCharacterEncoding("utf-8");
         getComment(req);
         resp.sendRedirect(req.getContextPath() + "/article?id=" + id);
     }

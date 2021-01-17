@@ -48,7 +48,7 @@
             <div class="card my-4">
                 <h5 class="card-header">Create post:</h5>
                 <div class="card-body">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="title">Title:</label>
                             <input class="form-control" rows="3" id="title" name="title" required
@@ -62,6 +62,9 @@
                         <div class="form-group">
                             <label for="draft">Draft:</label>
                             <input id="draft" name="draft" type="checkbox"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Post picture: <input name="picture" type="file" accept="image/*" required /></label>
                         </div>
                         <button type="submit" class="btn btn-primary">Post</button>
                     </form>

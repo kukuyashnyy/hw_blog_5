@@ -13,6 +13,8 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
+        resp.setCharacterEncoding("utf-8");
         req.getRequestDispatcher("WEB-INF/view/login.jsp").forward(req, resp);
     }
 
@@ -20,6 +22,8 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        System.out.println(req.getParameter("login"));
 //        System.out.println(req.getParameter("password"));
+        req.setCharacterEncoding("utf-8");
+        resp.setCharacterEncoding("utf-8");
         String login = req.getParameter("login");
         String password = req.getParameter("password");
 

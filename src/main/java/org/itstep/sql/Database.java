@@ -3,7 +3,6 @@ package org.itstep.sql;
 import java.sql.*;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Database {
@@ -29,6 +28,7 @@ public class Database {
                         "constraint post_user_id foreign key (user_id) references " + DB_NAME + "." + USER_TABLE_NAME + "(id), " +
                         "title varchar(50), " +
                         "text varchar(255), " +
+                        "img_path varchar(255), " +
                         "draft bool, " +
                         "dateTime datetime"
         );
@@ -40,7 +40,9 @@ public class Database {
                         "constraint comment_post_id foreign key (post_id) references " + DB_NAME + "." + POST_TABLE_NAME + "(id), " +
                         "text varchar(255)");
         addUser("user", "user");
-        addPost(new Post("MyPost1", "user", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolores fuga qui. Ab animi doloribus error esse, expedita illo ipsa iste, nemo nesciunt numquam optio quisquam ratione sit soluta!", 0));
+        Post post = new Post("MyPost1", "user", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolores fuga qui. Ab animi doloribus error esse, expedita illo ipsa iste, nemo nesciunt numquam optio quisquam ratione sit soluta!", 0);
+        post.setImg("resources/upload/cat.jpg");
+        addPost(post);
         addPost(new Post("MyPost2", "user", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem dolores fuga qui. Ab animi doloribus error esse, expedita illo ipsa iste, nemo nesciunt numquam optio quisquam ratione sit soluta!\n", 0));
     }
 
@@ -77,11 +79,12 @@ public class Database {
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              Statement stmt = conn.createStatement()) {
             String query = "insert into " + DB_NAME + "." + POST_TABLE_NAME +
-                    "(user_id, title, text, draft, dateTime) value " +
+                    "(user_id, title, text, img_path, draft, dateTime) value " +
                     "('" +
                     userId + "', '" +
                     post.getTitle() + "', '" +
                     post.getText() + "', '" +
+                    post.getImg() + "', '" +
                     post.getDraft() + "', '" +
                     post.getDateTime() +
                     "');";
@@ -244,6 +247,7 @@ public class Database {
                         result.getString("text"),
                         Integer.parseInt(result.getString("draft"))
                 );
+                post.setImg(result.getString("img_path"));
                 posts.add(post);
             }
             conn.close();
@@ -269,6 +273,7 @@ public class Database {
                         result.getString("text"),
                         Integer.parseInt(result.getString("draft"))
                 );
+                post.setImg(result.getString("img_path"));
                 posts.add(post);
             }
             conn.close();
@@ -293,6 +298,7 @@ public class Database {
                         result.getString("text"),
                         Integer.parseInt(result.getString("draft"))
                 );
+                post.setImg(result.getString("img_path"));
             }
             conn.close();
         } catch (SQLException | ParseException throwables) {

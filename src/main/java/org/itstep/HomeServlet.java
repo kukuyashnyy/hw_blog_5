@@ -16,6 +16,8 @@ import java.util.List;
 public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
+        resp.setCharacterEncoding("utf-8");
         Database database = Database.getInstance();
         List<Post> posts = database.getPosts();
         req.setAttribute("posts", posts);

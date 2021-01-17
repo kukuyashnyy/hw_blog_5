@@ -6,11 +6,12 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Post {
-    private final int id;
+    private int id = 0;
     private final String title;
     private final String author;
     private final Date dateTime;
     private final String text;
+    private  String img = "http://placehold.it/750x300";
     private final int draft;
     private final String SQL_DATETIME_PATTERN = "yy-MM-dd HH:mm:ss";
 
@@ -26,12 +27,19 @@ public class Post {
 
     public Post(String title, String author, String text, int draft) {
         Calendar calendar = Calendar.getInstance();
-        this.id = 0;
         this.title = title;
         this.author = author;
         this.text = text;
         this.draft = draft;
         this.dateTime = calendar.getTime();
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getImg() {
+        return img;
     }
 
     public int getId() {
