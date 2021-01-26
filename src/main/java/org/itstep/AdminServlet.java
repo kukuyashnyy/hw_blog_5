@@ -1,9 +1,7 @@
 package org.itstep;
 
-import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
-import org.itstep.sql.Comment;
 import org.itstep.sql.Database;
-import org.itstep.sql.Post;
+import org.itstep.Classes.Post;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;

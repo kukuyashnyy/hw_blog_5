@@ -1,4 +1,4 @@
-package org.itstep.sql;
+package org.itstep.Classes;
 
 public class Comment {
     private final int id;

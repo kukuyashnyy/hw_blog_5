@@ -1,5 +1,8 @@
 package org.itstep.sql;
 
+import org.itstep.Classes.Comment;
+import org.itstep.Classes.Post;
+
 import java.sql.*;
 import java.text.ParseException;
 import java.util.ArrayList;

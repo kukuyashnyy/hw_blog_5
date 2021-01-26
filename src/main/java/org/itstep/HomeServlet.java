@@ -1,7 +1,7 @@
 package org.itstep;
 
 import org.itstep.sql.Database;
-import org.itstep.sql.Post;
+import org.itstep.Classes.Post;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/")

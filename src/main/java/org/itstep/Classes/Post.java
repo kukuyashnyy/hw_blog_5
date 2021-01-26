@@ -1,4 +1,4 @@
-package org.itstep.sql;
+package org.itstep.Classes;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,12 +7,12 @@ import java.util.Date;
 
 public class Post {
     private int id = 0;
-    private final String title;
-    private final String author;
-    private final Date dateTime;
-    private final String text;
-    private  String img = "http://placehold.it/750x300";
-    private final int draft;
+    private String title = null;
+    private String author = null;
+    private Date dateTime = null;
+    private String text = null;
+    private String img = "http://placehold.it/750x300";
+    private int draft = 0;
     private final String SQL_DATETIME_PATTERN = "yy-MM-dd HH:mm:ss";
 
     public Post(int id, String title, String author, String dateTime, String text, int draft) throws ParseException {
@@ -36,6 +36,30 @@ public class Post {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setDraft(int draft) {
+        this.draft = draft;
     }
 
     public String getImg() {
@@ -88,12 +112,14 @@ public class Post {
     @Override
     public String toString() {
         return "Post{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", date=" + dateToString() +
-                ", time=" + timeToString() +
+                ", dateTime=" + dateTime +
                 ", text='" + text + '\'' +
+                ", img='" + img + '\'' +
                 ", draft=" + draft +
+                ", SQL_DATETIME_PATTERN='" + SQL_DATETIME_PATTERN + '\'' +
                 '}';
     }
 
